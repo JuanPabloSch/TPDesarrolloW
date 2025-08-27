@@ -1,0 +1,26 @@
+.tareas-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.tarea-card {
+    background-color: #ffe0b2; /* naranja claro */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.tarea-card:hover {
+    transform: scale(1.05);
+    background-color: #ffcc80;
+}
+
+.tarea-card a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #d35400;
+}
