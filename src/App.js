@@ -1,33 +1,36 @@
+import React, { useState } from "react";
 import { Routes, Route } from "react-router-dom";
-import { useState } from "react";
-import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
-import Tareas from "./pages/Tareas";
-import CrearTarea from "./pages/CrearTarea";
-import TareaDetalle from "./pages/TareaDetalle";
-import "./App.css";
+
+import Navbar from "./components/Navbar"; // ✅ correcto
+import HomePage from "./pages/HomePage";
+import TareasPage from "./pages/TareasPage";
+import CrearTareaPage from "./pages/CrearTareaPage";
+import TareaDetallePage from "./pages/TareaDetallePage";
 
 function App() {
-    const [tareas, setTareas] = useState([]);
+  // Estado global de tareas
+  const [tareas, setTareas] = useState([]);
 
-    const agregarTarea = (titulo) => {
-        setTareas((prev) => {
-        const nextId = prev.length ? Math.max(...prev.map(t => t.id)) + 1 : 1;
-        return [...prev, { id: nextId, titulo }];
-        });
-    };
-
-    return (
-        <div>
-        <Navbar />
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/tareas" element={<Tareas tareas={tareas} setTareas={setTareas} />} />
-            <Route path="/crear" element={<CrearTarea onCreate={agregarTarea} />} />
-            <Route path="/tarea/:id" element={<TareaDetalle />} />
-        </Routes>
-        </div>
-    );
+  return (
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route
+          path="/tareas"
+          element={<TareasPage tareas={tareas} setTareas={setTareas} />}
+        />
+        <Route
+          path="/crear"
+          element={<CrearTareaPage tareas={tareas} setTareas={setTareas} />}
+        />
+        <Route
+          path="/tarea/:id"
+          element={<TareaDetallePage tareas={tareas} />}
+        />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
